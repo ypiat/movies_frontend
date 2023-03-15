@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { BottomScrollListener, useBottomScrollListener}  from 'react-bottom-scroll-listener';
+import { BottomScrollListener }  from 'react-bottom-scroll-listener';
 import Filter from './components/filter';
 import MovieList from './components/movieList';
 import './App.scss';
+
 
 class App extends Component {
  constructor() {
@@ -122,8 +123,16 @@ class App extends Component {
   }
 
   render() {
-    console.log('on Page', this.state.moviesOnPage)
     const { moviesOnPage, genres } = this.state;
+    if (!moviesOnPage.length || !genres.length) {
+      return (
+        <div class='loading'>
+           <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+             <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+           </svg>
+        </div>
+    )
+    }
     return (
       <div className='column_wrapper'>
         <div className='container'>
